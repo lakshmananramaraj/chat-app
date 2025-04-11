@@ -17,88 +17,85 @@ const ContactsList = () => {
     );
   }
 
-  if (contacts.length === 0) {
-    return (
-      <div className="flex items-center justify-center h-full">
-        <div className="text-gray-500">No users found</div>
-      </div>
-    );
-  }
-
   return (
     <div className="flex flex-col justify-between h-full py-8 pl-6 pr-2 bg-white flex-shrink-0">
       <div className="flex flex-col">
-      <div className="flex flex-row items-center justify-center h-12 w-full">
-        <div className="flex items-center justify-center rounded-2xl text-indigo-700 bg-indigo-100 h-10 w-10">
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
-            ></path>
-          </svg>
+        <div className="flex flex-row items-center justify-center h-12 w-full">
+          <div className="flex items-center justify-center rounded-2xl text-indigo-700 bg-indigo-100 h-10 w-10">
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
+              ></path>
+            </svg>
+          </div>
+          <div className="ml-2 font-bold text-2xl">Chat App</div>
         </div>
-        <div className="ml-2 font-bold text-2xl">Chat App</div>
-      </div>
-      <div className="flex flex-col items-center bg-indigo-100 border border-gray-200 mt-4 w-full py-6 px-4 rounded-lg">
-        <Avatar
-          name={currentUser.username}
-          size={innerWidth <= 1268 ? "40" : "90"}
-          className="rounded-full"
-        />
-        <div className="text-sm font-semibold mt-2 capitalize">
-          {currentUser.username}
-        </div>
-        <div className="flex flex-row items-center mt-3">
-          {/* {currentUser.active ? ( */}
-          <div className="h-2 w-2 bg-green-500 rounded-full"></div>
-          {/* ) : (
+        <div className="flex flex-col items-center bg-indigo-100 border border-gray-200 mt-4 w-full py-6 px-4 rounded-lg">
+          <Avatar
+            name={currentUser.username}
+            size={innerWidth <= 1268 ? "40" : "90"}
+            className="rounded-full"
+          />
+          <div className="text-sm font-semibold mt-2 capitalize">
+            {currentUser.username}
+          </div>
+          <div className="flex flex-row items-center mt-3">
+            {/* {currentUser.active ? ( */}
+            <div className="h-2 w-2 bg-green-500 rounded-full"></div>
+            {/* ) : (
             <div className="h-2 w-2 bg-red-500 rounded-full"></div>
           )} */}
-          <div className="leading-none ml-1 text-xs">
-            {currentUser.active ? "Active" : "Active"}
+            <div className="leading-none ml-1 text-xs">
+              {currentUser.active ? "Active" : "Active"}
+            </div>
           </div>
         </div>
-      </div>
-      <div className="flex flex-col mt-8">
-        <div className="flex flex-row items-center justify-between text-xs">
-          <span className="font-bold">Chat</span>
-        </div>
-        <div className="flex flex-col space-y-1 mt-4 -mx-2 h-48 overflow-y-auto">
-          {contacts.map((contact) => (
-            <button
-              key={contact.id}
-              className={`flex flex-row items-center justify-between cursor-pointer hover:bg-gray-100 rounded-xl p-2 ${
-                selectedContact?.id === contact.id ? "bg-gray-100" : ""
-              }`}
-              onClick={() => setSelectedContact(contact)}
-            >
-              <div className="flex items-center">
-                <Avatar
-                  name={contact.username}
-                  size="30"
-                  className="rounded-full"
-                />
-                <div className="ml-2 text-sm font-semibold capitalize">
-                  {contact.username}
-                </div>
+        <div className="flex flex-col mt-8">
+          <div className="flex flex-row items-center justify-between text-xs">
+            <span className="font-bold">Chat</span>
+          </div>
+          <div className="flex flex-col space-y-1 mt-4 -mx-2 h-48 overflow-y-auto">
+            {contacts.length === 0 && (
+              <div className="flex items-center justify-center h-full">
+                <div className="text-gray-500">No user found</div>
               </div>
-              {contact.active ? (
-                <div className="h-2 w-2 bg-green-500 rounded-full mr-3"></div>
-              ) : (
-                <div className="h-2 w-2 bg-red-500 rounded-full mr-3"></div>
-              )}
-            </button>
-          ))}
-        </div>
-        {/* <div className="flex flex-row items-center justify-between text-xs mt-6">
+            )}
+            {contacts.map((contact) => (
+              <button
+                key={contact.id}
+                className={`flex flex-row items-center justify-between cursor-pointer hover:bg-gray-100 rounded-xl p-2 ${
+                  selectedContact?.id === contact.id ? "bg-gray-100" : ""
+                }`}
+                onClick={() => setSelectedContact(contact)}
+              >
+                <div className="flex items-center">
+                  <Avatar
+                    name={contact.username}
+                    size="30"
+                    className="rounded-full"
+                  />
+                  <div className="ml-2 text-sm font-semibold capitalize">
+                    {contact.username}
+                  </div>
+                </div>
+                {contact.active ? (
+                  <div className="h-2 w-2 bg-green-500 rounded-full mr-3"></div>
+                ) : (
+                  <div className="h-2 w-2 bg-red-500 rounded-full mr-3"></div>
+                )}
+              </button>
+            ))}
+          </div>
+          {/* <div className="flex flex-row items-center justify-between text-xs mt-6">
               <span className="font-bold">Archivied</span>
               <span className="flex items-center justify-center bg-gray-300 h-4 w-4 rounded-full">
                 7
@@ -112,7 +109,7 @@ const ContactsList = () => {
                 <div className="ml-2 text-sm font-semibold">Henry Boyd</div>
               </button>
             </div> */}
-      </div>
+        </div>
       </div>
       <div>
         <button
