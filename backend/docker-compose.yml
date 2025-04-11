@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+
+  db:
+    image: postgres:15.3-alpine3.18
+    restart: always
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=chat
+    ports:
+      - '5432:5432'
