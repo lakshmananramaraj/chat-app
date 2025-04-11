@@ -1,9 +1,10 @@
-Installation
+Installation 
+
 Prerequisites
 
 Node.js (v14+)
 PostgreSQL
-npm or yarn
+npm
 
 Environment Setup
 
@@ -44,6 +45,7 @@ Start the frontend development server:
 2. `npm start`
 
 API Documentation
+
 Authentication Endpoints
 
 Register a new user
